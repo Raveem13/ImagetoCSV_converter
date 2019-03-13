@@ -1,0 +1,4 @@
+#!/bin/sh
+pip install tesseract
+pip install wxpython
+#install opencv
