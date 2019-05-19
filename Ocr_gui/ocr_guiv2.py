@@ -1,5 +1,5 @@
 import wx
-import time
+# import time
 
 from ocr_detector import img_csv
 
@@ -26,7 +26,12 @@ class Example(wx.Frame):
                           size=(50, 50),pos=(380, 50))
         downloadButton.Bind(wx.EVT_BUTTON, self.DownloadFile)
 
-        self.gauge = wx.Gauge(panel, range = 20, size = (200, 25), style = wx.GA_HORIZONTAL, pos=(150, 60))
+        lblList = ['csv', 'xlsx'] 
+		  
+        self.rbox = wx.RadioBox(panel, label = 'Ouput Format', pos = (200,50), choices = lblList, majorDimension = 1, style = wx.RA_SPECIFY_ROWS) 
+        self.rbox.Bind(wx.EVT_RADIOBOX,self.onRadioBox) 
+
+        # self.gauge = wx.Gauge(panel, range = 20, size = (200, 25), style = wx.GA_HORIZONTAL, pos=(150, 60))
 
         self.SetSize((500, 250))
         self.SetTitle('OCR Detector')
@@ -54,14 +59,19 @@ class Example(wx.Frame):
         self.img_path = openFileDialog.GetPath()
         openFileDialog.Destroy()
 
+    def onRadioBox(self,e): 
+        print(self.rbox.GetStringSelection(),' is clicked from Radio Box')
+
     def DownloadFile(self, e):
         print("Download Button Pressed")
         # print(self.img_path)
-        
+        self.label = self.rbox.GetStringSelection()
+        print(self.label)
+
         try:
-            img_csv(self.img_path)
+            img_csv(self.img_path, self.label)
             print("File Converted and saved")
-            wx.MessageBox('File Converted and saved local Directory', 'Info', wx.OK | wx.ICON_INFORMATION)
+            wx.MessageBox('File converted and saved to local directory', 'Info', wx.OK | wx.ICON_INFORMATION)
         except:
             wx.MessageBox('Operation could not be completed', 'Error', wx.OK | wx.ICON_ERROR)
 
