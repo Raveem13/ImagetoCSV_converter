@@ -7,3 +7,6 @@ The program requires the following dependencies:
 * numpy
 * opencv
 * wxPython
+  
+## Installation
+The demo has been uploaded to YouTube https://youtu.be/cY431j7EvYs
