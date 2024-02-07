@@ -8,5 +8,5 @@ The program requires the following dependencies:
 * opencv
 * wxPython
   
-## Installation
+## Demo
 The demo has been uploaded to YouTube https://youtu.be/cY431j7EvYs
